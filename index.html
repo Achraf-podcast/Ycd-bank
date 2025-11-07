@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YCD bank</title>
+    <link rel="shortcut icon" href="images/faviconycdbank.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#121417] text-[#FFFFFF]">
+    <!-- Dashboard Page -->
+    <div class="flex min-h-screen bg-[#121417]">
+
+        <div class="hidden md:block w-96 flex-shrink-0 bg-[#1A1D21] border-r border-gray-800">
+        </div>
+        <section id="dashboard-view" class="flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
+            <h1 class="text-2xl md:text-3xl font-semibold mb-6 md:mb-8">Welcome back, Achraf</h1>
+
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">Accounts</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="flex flex-col sm:flex-row justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-gray-800 p-3 rounded-lg h-12 w-12 flex items-center justify-center">
+                                <img src="images/icons/bank.svg" alt="Bank">
+                            </div>
+                            <div>
+                                <p class="font-semibold">Main Account</p>
+                                <p class="text-xs md:text-sm text-gray-400">Checking 0378D193P02JG354</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                            <span class="text-lg md:text-xl font-bold">$2,500</span>
+                            <button class="p-2 rounded-3xl hover:bg-gray-700 transition"
+                                title="Toggle balance visibility">
+                                <img src="images/icons/hideshoweye.png" alt="Eye">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-gray-800 p-3 rounded-lg h-12 w-12 flex items-center justify-center">
+                                <img src="images/icons/pig.svg" alt="Pig">
+                            </div>
+                            <div>
+                                <p class="font-semibold">Savings Account</p>
+                                <p class="text-xs md:text-sm text-gray-400">Savings 507A96D4S87F92D8</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                            <span class="text-lg md:text-xl font-bold">$15,000</span>
+                            <button class="p-2 rounded-3xl hover:bg-gray-700 transition"
+                                title="Toggle balance visibility">
+                                <img src="images/icons/hideshoweye.png" alt="Eye">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">Quick Links</h2>
+                <div class="flex flex-wrap gap-3">
+                    <button
+                        class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-2 rounded-lg font-medium transition flex-1 sm:flex-none">Transfer</button>
+                    <button
+                        class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-2 rounded-lg font-medium transition flex-1 sm:flex-none">Pay
+                        Bills</button>
+                </div>
+            </div>
+
+            <div class="max-w-md">
+                <h2 class="text-xl font-semibold mb-4">Recent Transactions</h2>
+                <div class="bg-[#1A1D21] rounded-xl border border-gray-800 overflow-hidden text-sm md:text-base">
+                    <div class="grid grid-cols-3 p-4 text-gray-400 border-b border-gray-800 font-medium">
+                        <div>Date</div>
+                        <div>Type</div>
+                        <div class="text-center">Amount</div>
+                    </div>
+                    <div class="divide-y divide-gray-800">
+                        <div class="p-4 grid grid-cols-3 items-center">
+                            <div class="text-gray-400">07/15/2024</div>
+                            <div class="text-gray-400">Transfer</div>
+                            <div class="text-center text-red-500">-$75.00</div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3 items-center">
+                            <div class="text-gray-400">07/14/2024</div>
+                            <div class="text-gray-400">Transfer</div>
+                            <div class="text-center text-green-500">+$1,500.00</div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3 items-center">
+                            <div class="text-gray-400">07/12/2024</div>
+                            <div class="text-gray-400">Transfer</div>
+                            <div class="text-center text-red-500">-$50.00</div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3 items-center">
+                            <div class="text-gray-400">07/10/2024</div>
+                            <div class="text-gray-400">Transfer</div>
+                            <div class="text-center text-red-500">-$120.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 flex justify-center">
+                    <button
+                        class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-3 rounded-lg font-medium transition">
+                        Show All Transactions
+                    </button>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</body>
+
+</html>
