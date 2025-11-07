@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>YCD Bank</title>
     <link rel="shortcut icon" href="images/faviconycdbank.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/script.js" defer></script>
 </head>
 
 <body class="bg-[#121417] text-[#FFFFFF]">
-    <!-- Login Form -->
-    <section class="min-h-screen flex items-center justify-center p-4">
+
+    <section id="login_page" class="min-h-screen flex items-center justify-center p-4">
         <div class="w-full max-w-md flex flex-col items-center text-center">
             <h1 class="text-3xl mb-8">Welcome Back</h1>
             <form id="login_form" class="flex flex-col gap-4 items-center w-full">
@@ -27,11 +28,52 @@
                         class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
                         type="password" id="login_password" name="password" placeholder="Enter your password" required>
                 </div>
-                <button id="login_button"
+                <button id="login_submit_button"
                     class="h-10 bg-[#1280ED] rounded-lg mt-4 w-full max-w-xs hover:bg-[#1069C4] transition duration-200 flex items-center justify-center"
                     type="submit">Log In</button>
-                    <p style ="color:#9EABBA">Don't have an account ? <button class="underline">Register Now</button></p>
+                <p style="color:#9EABBA">Don't have an account ?
+                    <button id="register_now_button" type="button" class="underline">Register Now</button>
+                </p>
+        </div>
+        </form>
+        </div>
+    </section>
+
+    <section id="signup_page" class="min-h-screen flex items-center justify-center p-4 hidden">
+        <div class="w-full max-w-md flex flex-col items-center text-center">
+            <h1 class="text-3xl mb-8">Welcome to YCD Bank</h1>
+            <form id="signup_form" class="flex flex-col gap-4 items-center w-full">
+                <div class="flex flex-col w-full max-w-xs text-left gap-1">
+                    <label for="first_name_signup" class="text-sm ml-1">First Name</label>
+                    <input id="first_name_signup"
+                        class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
+                        placeholder="Enter your First Name" name="firstname" required>
                 </div>
+                <div class="flex flex-col w-full max-w-xs text-left gap-1">
+                    <label for="last_name_signup" class="text-sm ml-1">Last Name</label>
+                    <input
+                        class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
+                        type="text" id="last_name_signup" name="password" placeholder="Enter your Last Name" required>
+                </div>
+                <div class="flex flex-col w-full max-w-xs text-left gap-1">
+                    <label for="signup_password" class="text-sm ml-1">Password</label>
+                    <input
+                        class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
+                        type="password" id="signup_password" name="password" placeholder="Enter a password" required>
+                </div>
+                <div class="flex flex-col w-full max-w-xs text-left gap-1">
+                    <label for="confirm_password" class="text-sm ml-1">Confirm Password</label>
+                    <input
+                        class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
+                        type="password" id="confirm_password" name="password" placeholder="Confirm password" required>
+                </div>
+
+                <button id="signup_submit_button"
+                    class="h-10 bg-[#1280ED] rounded-lg mt-4 w-full max-w-xs hover:bg-[#1069C4] transition duration-200 flex items-center justify-center"
+                    type="submit">Sign Up</button>
+                <p style="color:#9EABBA">Already have an account ?
+                    <button id="go_to_login_button" type="button" class="underline">Login</button>
+                </p>
             </form>
         </div>
     </section>
