@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,105 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body class="bg-[#121417] text-[#FFFFFF] pt-4 pr-4 pb-0 pl-4">
-    
+    <!-- page My Accounts -->
+    <div class="flex min-h-screen">
+        <div class="hidden md:block w-64 flex-shrink-0">
+            <div class="fixed gap-36 flex flex-col w-64">
+                <div class="w-64 sidebar">
+                    <div class="ycdlogo"><img src="images/logoycdbank.png" alt="YCD bank logo"></div>
+                    <div class="menu">
+                        <button class="menu-item">
+                            <div class="icon"><img src="images/icons/home.svg" alt="home"></div>
+                            <p>Dashboard</p>
+                        </button>
+                    </div>
+                    <div class="menu">
+                        <button class="menu-item">
+                            <div class="icon"><img src="images/icons/card1.svg" alt=" My accounts"></div>
+                            <p>My accounts</p>
+                        </button>
+                    </div>
+                    <div class="menu">
+                        <button class="menu-item">
+                            <div class="icon"><img src="images/icons/card2.svg" alt="cards"></div>
+                            <p>Cards</p>
+                        </button>
+                    </div>
+                    <div class="menu">
+                        <button class="menu-item">
+                            <div class="icon"><img src="images/icons/transfer.svg" alt="Transfers"></div>
+                            <p>Transfers</p>
+                        </button>
+                    </div>
+                    <div class="menu">
+                        <button class="menu-item">
+                            <div class="icon"><img src="images/icons/dollar1.svg" alt="benefeciaries"></div>
+                            <p>Benefeciaries</p>
+                        </button>
+                    </div>
+                    <div class="menu">
+                        <button class="menu-item">
+                            <div class="icon"><img src="images/icons/dollar2.svg" alt="payments"></div>
+                            <p>Payments</p>
+                        </button>
+                    </div>
+                    <div class="menu">
+                        <button class="menu-item">
+                            <div class="icon"><img src="images/icons/menu.svg" alt="transactions"></div>
+                            <p>Transactions</p>
+                        </button>
+                    </div>
+                    <div class="menu">
+                        <button class="menu-item">
+                            <div class="icon"><img src="images/icons/loans.svg" alt="loans"></div>
+                            <p>Loans</p>
+                        </button>
+                    </div>
+                </div>
+                <div class="menu">
+                    <button class="menu-item">
+                        <div class="icon"><img src="images/icons/logout.svg" alt="logout"></div>
+                        <p>Log out</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <section id="myaccounts-view" class="flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
+            <h1 class="text-3xl md:text-3xl font-semibold mb-2">Make a Transfer</h1>
+            <div>
+                <h2 class="text-2xl font-semibold mt-16">Transfer to</h2>
+                <div class="grid grid-cols-1 gap-4 mt-4" style="color:#9EABBA">
+                    <form>
+                        <select id="select_beneficiary"
+                            class="bg-[#3B4754] border-2 border-gray-600 rounded-lg h-12 w-full lg:w-1/2" required>
+                            <option style="color:#9EABBA;" disabled selected>Choose a Beneficiary</option>
+                            <option>Achraf</option>
+                            <option>Mehdi</option>
+                            <option>Aziz</option>
+                        </select>
+                    </form>
+                    <input type="text" placeholder="Amount"
+                        class="bg-[#3B4754] border-2 border-gray-600 rounded-lg h-12 px-2 w-full lg:w-1/2">
+                    <button
+                        class="bg-[#1280ED] text-white rounded-lg hover:bg-[#1069C4] transition duration-200 w-full lg:w-24 h-10">Transfer</button>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold mt-16">Pay a Bill</h2>
+                    <div class="grid grid-cols-1 gap-4 mt-4" style="color:#9EABBA">
+                        <form>
+                            <input type="text" placeholder="Reference Number"
+                                class="bg-[#3B4754] border-2 border-gray-600 rounded-lg h-12 px-2 w-full lg:w-1/2">
+                        </form>
+                        <input type="text" placeholder="Amount"
+                            class="bg-[#3B4754] border-2 border-gray-600 rounded-lg h-12 px-2 w-full lg:w-1/2">
+                        <button
+                            class="bg-[#1280ED] text-white rounded-lg hover:bg-[#1069C4] transition duration-200 w-full lg:w-24 h-10">Pay</button>
+                    </div>
+                </div>
+        </section>
+    </div>
 </body>
+
 </html>

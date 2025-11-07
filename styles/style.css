@@ -1,3 +1,52 @@
 * {
-  font-family: "Manrope", "Noto Sans", sans-serif;
+    font-family: "Manrope", "Noto Sans", sans-serif;;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: #111418;
+}
+
+.ycdlogo{
+  padding-left: 20%;
+  margin-bottom: 1rem;
+}
+.ycdlogo img{
+  width: 120px;
+  height: auto;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: #283039;
+}
+
+.menu-item.active {
+  background-color: #283039;
+}
+
+.icon{
+    width: 20px;
+    height: auto;
+}
+
+.menu-item p {
+  color: #ffffff;
+  font-size: 0.750rem;
+  font-weight: 500;
 }
