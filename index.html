@@ -1,14 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YCD Bank</title>
     <link rel="shortcut icon" href="images/faviconycdbank.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
-<body class="bg-[#121417] text-[#FFFFFF] pt-4 pr-4 pb-0 pl-4">
-    
+
+<body class="bg-[#121417] text-[#FFFFFF]">
+    <!-- page My Accounts -->
+     <div class="flex min-h-screen">
+    <section id="myaccounts-view" class="flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
+        <h1 class="text-3xl md:text-3xl font-semibold mb-2">My Accounts</h1>
+        <p style="color:#9EABBA">View and manage your accounts</p>
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold mt-8">Main Account</h2>
+            <div class="grid grid-cols-1 gap-4">
+                <div class="flex flex-col sm:flex-row justify-between gap-4">
+                    <div class="flex items-center gap-4 mt-6">
+                        <div>
+                            <p class="font-bold">Current Balance</p>
+                            <p class="text-xs md:text-sm text-gray-400">Account Number 0378D193P02JG354</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                        <span class="text-lg md:text-xl font-bold">$2,500</span>
+                        <button class="p-2 rounded-3xl hover:bg-gray-700 transition" title="Toggle balance visibility">
+                            <img src="images/icons/hide.png" alt="Eye">
+                        </button>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <button
+                        class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-5 flex items-center justify-center text-sm gap-2">
+                        Display RIB
+                    </button>
+
+                    <button
+                        class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-3 flex items-center justify-center text-sm gap-2">
+                        Export RIB
+                        <img class="w-5 h-5" src="images/icons/pdf.svg" alt="Icon Pdf">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold mt-8">Savings Account</h2>
+            <div class="grid grid-cols-1 gap-4">
+                <div class="flex flex-col sm:flex-row justify-between gap-4">
+                    <div class="flex items-center gap-4 mt-6">
+                        <div>
+                            <p class="font-bold">Current Balance</p>
+                            <p class="text-xs md:text-sm text-gray-400">Account Number 507A96D4S87F92D8</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                        <span class="text-lg md:text-xl font-bold">$15,000</span>
+                        <button class="p-2 rounded-3xl hover:bg-gray-700 transition" title="Toggle balance visibility">
+                            <img src="images/icons/hide.png" alt="Eye">
+                        </button>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <button
+                        class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-5 flex items-center justify-center text-sm gap-2">
+                        Display RIB
+                    </button>
+
+                    <button
+                        class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-3 flex items-center justify-center text-sm gap-2">
+                        Export RIB
+                        <img class="w-5 h-5" src="images/icons/pdf.svg" alt="Icon Pdf">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
 </body>
+
 </html>
