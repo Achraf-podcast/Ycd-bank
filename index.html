@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,119 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body class="bg-[#121417] text-[#FFFFFF] pt-4 pr-4 pb-0 pl-4">
-    
+    <div class="flex min-h-screen">
+        <section id="myaccounts-view" class="flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
+            <h1 class="text-3xl md:text-3xl font-semibold mb-2">Manage Beneficiaries</h1>
+            <p style="color:#9EABBA">Add, edit, or remove beneficiaries for your account.</p>
+            <div>
+                <h2 class="text-2xl mt-6">Add New Beneficiary</h2>
+                <form class="grid grid-cols-1 gap-4 mt-4" style="color:#9EABBA">
+                    <label for="Beneficiary" style="color:white">Beneficiary Name</label>
+                    <input type="text" placeholder="Enter beneficiary name"
+                        class="bg-[#3B4754] border-2 border-gray-600 rounded-lg h-12 px-2 w-full lg:w-1/2" required>
+                    <label for="Beneficiary" style="color:white">Bank Account Details</label>
+                    <input type="text" placeholder="Amount"
+                        class="bg-[#3B4754] border-2 border-gray-600 rounded-lg h-12 px-2 w-full lg:w-1/2" required>
+                    <button
+                        class="bg-[#1280ED] text-white rounded-lg hover:bg-[#1069C4] transition duration-200 w-full lg:w-32 h-10">Add
+                        Beneficiary</button>
+                </form>
+                <h2 class="mt-8 text-2xl">Existing Beneficiary</h2>
+                <div class="relative w-full lg:w-1/2 mt-4">
+                    <img src="images/icons/searchicon.png.png" alt="Search"
+                        class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                    <input type="text" placeholder="Search a beneficiary"
+                        class="pl-10 pr-8 bg-[#293038] rounded-lg text-grey-800 h-12 w-full">
+                </div>
+                <div class="max-w-3xl mt-6">
+                    <div class="bg-[#1A1D21] rounded-xl border border-gray-800 overflow-hidden text-sm md:text-base">
+
+                        <div class="hidden md:grid grid-cols-4 p-4 text-white-400 border-b border-gray-800 font-medium">
+                            <div>Name</div>
+                            <div>Account Number</div>
+                            <div class="text-center">Status</div>
+                            <div class="text-center">Delete</div>
+                        </div>
+
+                        <div class="divide-y divide-gray-800">
+
+                            <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center">
+                                <div class="text-gray-400">
+                                    <span class="font-medium text-white md:hidden">Name: </span>
+                                    Achraf Podcast
+                                </div>
+                                <div class="text-gray-400">
+                                    <span class="font-medium text-white md:hidden">Account: </span>
+                                    07365317964753
+                                </div>
+                                <button
+                                    class="bg-[#293038] h-10 rounded-lg w-full md:w-3/4 md:justify-self-center">Active</button>
+
+                                <button class="justify-self-center md:justify-self-center"><img
+                                        src="images/icons/trash.svg"></button>
+                            </div>
+
+                            <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center">
+                                <div class="text-gray-400">
+                                    <span class="font-medium text-white md:hidden">Name: </span>
+                                    Aziz Robinho
+                                </div>
+                                <div class="text-gray-400">
+                                    <span class="font-medium text-white md:hidden">Account: </span>
+                                    65093272374028
+                                </div>
+                                <button
+                                    class="bg-green-600 h-10 rounded-lg w-full md:w-3/4 md:justify-self-center">Active</button>
+
+                                <button class="justify-self-center md:justify-self-center"><img
+                                        src="images/icons/trash.svg"></button>
+                            </div>
+
+                            <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center">
+                                <div class="text-gray-400">
+                                    <span class="font-medium text-white md:hidden">Name: </span>
+                                    Achraf Iniesta
+                                </div>
+                                <div class="text-gray-400">
+                                    <span class="font-medium text-white md:hidden">Account: </span>
+                                    83540274509373
+                                </div>
+                                <button
+                                    class="bg-red-600 h-10 rounded-lg w-full md:w-3/4 md:justify-self-center">Blocked</button>
+
+                                <button class="justify-self-center md:justify-self-center"><img
+                                        src="images/icons/trash.svg"></button>
+                            </div>
+
+                            <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center">
+                                <div class="text-gray-400">
+                                    <span class="font-medium text-white md:hidden">Name: </span>
+                                    Zlatan Ibrahimovic
+                                </div>
+                                <div class="text-gray-400">
+                                    <span class="font-medium text-white md:hidden">Account: </span>
+                                    83640264629943
+                                </div>
+                                <button
+                                    class="bg-[#293038] h-10 rounded-lg w-full md:w-3/4 md:justify-self-center">Active</button>
+
+                                <button class="justify-self-center md:justify-self-center"><img
+                                        src="images/icons/trash.svg"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-center">
+                        <button
+                            class="w-full lg:w-auto bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-3 rounded-lg font-medium transition">
+                            Show All Beneficiary
+                        </button>
+                    </div>
+                </div>
+        </section>
+    </div>
 </body>
+
 </html>
