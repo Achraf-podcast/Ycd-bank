@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>YCD Bank</title>
     <link rel="shortcut icon" href="images/faviconycdbank.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="scripts/auth.js" defer></script>
@@ -12,7 +12,7 @@
 
 <body class="bg-[#121417] text-[#FFFFFF]">
     <!-- Sign Up Form -->
-    <section class="min-h-screen flex items-center justify-center p-4 hidden">
+    <section id = "signup_page"class="min-h-screen flex items-center justify-center p-4">
         <div class="w-full max-w-md flex flex-col items-center text-center">
             <h1 class="text-3xl mb-8">Welcome to YCD Bank</h1>
             <form id="signup_form" class="flex flex-col gap-4 items-center w-full">
@@ -40,12 +40,11 @@
                         class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
                         type="password" id="signup_confirm_password" name="password" placeholder="Confirm password">
                 </div>
-                <button id="login_button"
-                    class="h-10 bg-[#1280ED] rounded-lg mt-4 w-full max-w-xs hover:bg-[#1069C4] transition duration-200 flex items-center justify-center"
+                <button class="h-10 bg-[#1280ED] rounded-lg mt-4 w-full max-w-xs hover:bg-[#1069C4] transition duration-200 flex items-center justify-center"
                     type="submit">Sign Up</button>
                 <div id="message_erreur" style="color: red;"></div>
             </form>
-            <p style="color:#9EABBA">Already have an account ? <button class="underline">Login</button></p>
+            <p style="color:#9EABBA">Already have an account ? <button id = "go_to_login_button"class="underline">Login</button></p>
         </div>
     </section>
     <!-- Login Form -->

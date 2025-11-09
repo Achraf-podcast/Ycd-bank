@@ -1,6 +1,24 @@
 const signup_form = document.getElementById("signup_form")
+const login_form = document.getElementById("login_form")
+const signup_page = document.getElementById("signup_page")
+const login_page = document.getElementById("login_page")
 
-signup_form.addEventListener("submit", () => {
+const register_now_button = document.getElementById("register_now_button");
+const go_to_login_button = document.getElementById("go_to_login_button");
+
+// Clic sur "Register Now"
+register_now_button.addEventListener("click", () => {
+    login_page.classList.add("hidden");
+    signup_page.classList.remove("hidden");
+})
+
+// Clic sur "Login"
+go_to_login_button.addEventListener("click", () => {
+    signup_page.classList.add("hidden");
+    login_page.classList.remove("hidden");
+})
+
+signup_form.addEventListener("submit", (event) => {
     event.preventDefault()
     const signup_password = document.getElementById("signup_password")
     const signup_confirm_password = document.getElementById("signup_confirm_password")
