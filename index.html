@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="images/faviconycdbank.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/script.js"></script>
 </head>
 
 <body class="bg-[#121417] text-[#FFFFFF]">
@@ -42,26 +41,17 @@
                             <div class="text-center">Delete</div>
                         </div>
 
-                        <div class="divide-y divide-gray-800">
-
-                            <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center hidden">
+                        <div class="divide-y divide-gray-800" id="transactions-container">
+                            <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center transaction-table hidden">
                                 <div class="text-gray-400">
                                     <span class="font-medium text-white md:hidden">Date: </span>
+                                    <span></span>
                                 </div>
                                 <div class="text-gray-400">
                                     <span class="font-medium text-white md:hidden">Type: </span>
+                                    <span></span>
                                 </div>
-                                <span class="text-[#5CFF98] w-full md:justify-self-center"></span>
-                                <button class="justify-self-center md:justify-self-center"><img src="images/icons/trash.svg"></button>
-                            </div>
-                            <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center hidden">
-                                <div class="text-gray-400">
-                                    <span class="font-medium text-white md:hidden">Date: </span>
-                                </div>
-                                <div class="text-gray-400">
-                                    <span class="font-medium text-white md:hidden">Type: </span>
-                                </div>
-                                <span class="text-[#EB5757] w-full md:justify-self-center"></span>
+                                <span class="w-full md:justify-self-center"></span>
                                 <button class="justify-self-center md:justify-self-center"><img src="images/icons/trash.svg"></button>
                             </div>
                         </div>
@@ -83,6 +73,8 @@
 
         </section>
     </div>
+    
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
