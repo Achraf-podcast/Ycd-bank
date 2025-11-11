@@ -12,7 +12,6 @@ const transactions = [
     {id: 9, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
     {id: 10, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false}
 ];
-const updatedtransactions = [];
 
 function showTransaction(id, date, type, amount, amountType){
     const original = document.querySelector('.transaction-table');
@@ -30,30 +29,30 @@ function showTransaction(id, date, type, amount, amountType){
     container.appendChild(newTable);
 }
 
-let temp = [];
-let counter = 0;
-let i = 1;
-transactions.forEach(transaction => {
-    temp[i-1] = transaction;
-    if(i%4 === 0){
-        updatedtransactions[counter] = temp;
-        temp = [];
-        counter++;
+function separateTransactions(){
+    const updatedtransactions = [];
+    let temp = [];
+    let counter = 0;
+    let index = 1;
+    transactions.forEach(transaction => {
+        temp[index-1] = transaction;
+        if(index%4 === 0){
+            updatedtransactions[counter] = temp;
+            temp = [];
+            counter++;
+        }
+        index++
+    });
+
+    let rest = transactions.length % 4;
+    if(rest){
+        for(let i=0; i<rest; i++){
+            updatedtransactions[counter] = temp.filter(obj => Object.keys(obj).length > 0);
+        }
     }
-    i++
-});
+    return updatedtransactions
+}
 
-/*let rest = transactions.length % 4;
-if(rest){
-    console.log(rest);
-}*/
-
-updatedtransactions.forEach(t => {
-    t.filter(obj => Object.keys(obj).length > 0);
-    console.log(t);
-});
-//console.log(updatedtransactions);
-
-
-
+console.log(separateTransactions());
+// .filter(obj => Object.keys(obj).length > 0)
 //showTransaction(transaction.id, transaction.date, transaction.type, transaction.amount, transaction.amountType);
