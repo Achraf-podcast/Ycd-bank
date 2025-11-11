@@ -18,15 +18,18 @@
                     <h2 class="text-white tracking-light text-[32px] font-bold leading-tight min-w-72">Transactions</h2>
                 </div>
                 <div class="flex gap-3 max-md:gap-9 p-3 flex-wrap pr-4">
-                    <button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#283039] pl-4 pr-2 text-white text-sm font-medium leading-normal">
+                    <button
+                        class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#283039] pl-4 pr-2 text-white text-sm font-medium leading-normal">
                         Type
                         <img src="images/icons/arrow-down.png" alt="arrow down icon" class="w-4 h-4">
                     </button>
-                    <button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#283039] pl-4 pr-2 text-white text-sm font-medium leading-normal">
+                    <button
+                        class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#283039] pl-4 pr-2 text-white text-sm font-medium leading-normal">
                         Date
                         <img src="images/icons/arrow-down.png" alt="arrow down icon" class="w-4 h-4">
                     </button>
-                    <button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#283039] pl-4 pr-2 text-white text-sm font-medium leading-normal">
+                    <button
+                        class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#283039] pl-4 pr-2 text-white text-sm font-medium leading-normal">
                         Amount
                         <img src="images/icons/arrow-down.png" alt="arrow down icon" class="w-4 h-4">
                     </button>
@@ -42,18 +45,7 @@
                         </div>
 
                         <div class="divide-y divide-gray-800" id="transactions-container">
-                            <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center transaction-table hidden">
-                                <div class="text-gray-400">
-                                    <span class="font-medium text-white md:hidden">Date: </span>
-                                    <span></span>
-                                </div>
-                                <div class="text-gray-400">
-                                    <span class="font-medium text-white md:hidden">Type: </span>
-                                    <span></span>
-                                </div>
-                                <span class="w-full md:justify-self-center"></span>
-                                <button class="justify-self-center md:justify-self-center"><img src="images/icons/trash.svg"></button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -61,10 +53,14 @@
                     <button class="flex size-10 items-center justify-center">
                         <img src="images/icons/arrow-left.png" alt="arrow left icon" class="w-5 h-5">
                     </button>
-                    <button class="text-sm font-bold leading-normal flex size-10 items-center justify-center text-white rounded-full bg-[#283039] pagination">1</button>
-                    <button class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full pagination">2</button>
-                    <button class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full pagination">3</button>
-                    <button class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full pagination">4</button>
+                    <button
+                        class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full bg-[#283039] pagination">1</button>
+                    <button
+                        class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full pagination">2</button>
+                    <button
+                        class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full pagination">3</button>
+                    <button
+                        class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full pagination">4</button>
                     <button class="flex size-10 items-center justify-center">
                         <img src="images/icons/arrow-right.png" alt="arrow right icon" class="w-5 h-5">
                     </button>
@@ -73,7 +69,19 @@
 
         </section>
     </div>
-    
+
+    <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center transaction-table hidden">
+        <div class="text-gray-400">
+            <span class="font-medium text-white md:hidden">Date: </span>
+            <span></span>
+        </div>
+        <div class="text-gray-400">
+            <span class="font-medium text-white md:hidden">Type: </span>
+            <span></span>
+        </div>
+        <span class="w-full md:justify-self-center"></span>
+        <button class="justify-self-center md:justify-self-center"><img src="images/icons/trash.svg"></button>
+    </div>
     <script src="scripts/script.js"></script>
 </body>
 

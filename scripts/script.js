@@ -74,11 +74,16 @@ function showTransactionOfEachTable(){
     }
 }
 function switchPagination(num){
-    console.log(paginationBtns[num-1]);
+    for(let i=0; i<paginationBtns.length; i++){
+        paginationBtns[i].classList.remove('bg-[#283039]');
+        paginationBtns[num].classList.add('bg-[#283039]')
+    }
 }
 
 document.getElementById("pagination-container").addEventListener("click", (e) => {
-    switchPagination(e.target.textContent);
+    switchPagination(parseInt(e.target.textContent)-1);
+    document.getElementById('transactions-container').innerHTML = "";
+    showTransactionOfEachTable();
 });
 
 
