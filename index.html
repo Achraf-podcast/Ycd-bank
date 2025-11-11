@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YCD Bank</title>
+    <link rel="shortcut icon" href="images/faviconycdbank.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/script.js" defer></script>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body class="bg-[#121417] text-[#FFFFFF]">
+    <!-- Sign Up Form -->
+    <section id="signup_page" class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-md flex flex-col items-center text-center">
+            <h1 class="text-3xl mb-8">Welcome to YCD Bank</h1>
+            <form id="signup_form" class="flex flex-col gap-4 items-center w-full">
+                <div class="flex flex-col w-full max-w-xs text-left gap-1">
+                    <label for="first_name_signup" class="text-sm ml-1">First Name</label>
+                    <input id="first_name_signup"
+                        class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
+                        placeholder="Enter your First Name" name="firstname">
+                </div>
+                <div class="flex flex-col w-full max-w-xs text-left gap-1">
+                    <label for="last_name_signup" class="text-sm ml-1">Last Name</label>
+                    <input
+                        class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
+                        type="text" id="last_name_signup" name="last_name" placeholder="Enter your Last Name">
+                </div>
+                <div class="flex flex-col w-full max-w-xs text-left gap-1">
+                    <label for="signup_password" class="text-sm ml-1">Password</label>
+
+                    <div class="relative">
+                        <input
+                            class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED] pr-10"
+                            type="password" id="signup_password" name="password" placeholder="Enter a password">
+
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 group">
+
+                            <i class="text-gray-400">i</i>
+
+                            <div class="absolute hidden group-hover:block 
+                        bottom-full right-0 mb-2 w-64 p-3 
+                        bg-[#293038] border border-gray-600 
+                        rounded-lg text-xs text-left shadow-lg z-10">
+                                <h4 class="font-bold mb-1">Password Requirements:</h4>
+                                <ul class="list-disc list-inside">
+                                    <li>At least 8 characters</li>
+                                    <li>One uppercase letter (A-Z)</li>
+                                    <li>One lowercase letter (a-z)</li>
+                                    <li>One number (0-9)</li>
+                                    <li>One special character (!@#$...)</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col w-full max-w-xs text-left gap-1">
+                    <label for="signup_confirm_password" class="text-sm ml-1">Confirm Password</label>
+                    <input
+                        class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
+                        type="password" id="signup_confirm_password" name="password" placeholder="Confirm password">
+                </div>
+                <button
+                    class="h-10 bg-[#1280ED] rounded-lg mt-4 w-full max-w-xs hover:bg-[#1069C4] transition duration-200 flex items-center justify-center"
+                    type="submit">Sign Up</button>
+            </form>
+            <p style="color:#9EABBA">Already have an account ? <button id="go_to_login_button"
+                    class="underline">Login</button></p>
+        </div>
+    </section>
+    <!-- Login Form -->
+    <section id="login_page" class="min-h-screen flex items-center justify-center p-4 hidden">
+        <div class="w-full max-w-md flex flex-col items-center text-center">
+            <h1 class="text-3xl mb-8">Welcome Back</h1>
+            <form id="login_form" class="flex flex-col gap-4 items-center w-full">
+                <div class="flex flex-col w-full max-w-xs text-left gap-1">
+                    <label for="login_identifier" class="text-sm ml-1">Identifier</label>
+                    <input id="login_identifier"
+                        class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
+                        placeholder="Enter your 8-digits Identifier" name="ID" required>
+                </div>
+                <div class="flex flex-col w-full max-w-xs text-left gap-1">
+                    <label for="login_password" class="text-sm ml-1">Password</label>
+                    <input
+                        class="h-10 rounded-lg px-3 w-full text-xs bg-[#293038] border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1280ED]"
+                        type="password" id="login_password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button id="login_submit_button"
+                    class="h-10 bg-[#1280ED] rounded-lg mt-4 w-full max-w-xs hover:bg-[#1069C4] transition duration-200 flex items-center justify-center"
+                    type="submit">Log In</button>
+                <p style="color:#9EABBA">Don't have an account ?
+                    <button id="register_now_button" type="button" class="underline">Register Now</button>
+                </p>
+        </div>
+        </form>
+        </div>
+    </section>
+    <!-- Notifications d'erreur ou de succes -->
+    <div class="notification success" id="success_notification"></div>
+    <div class="notification error" id="error_notification"></div>
+
+    <!-- Popup qui affiche l'id et le rib apres l'inscription -->
+    <div id="success_modal_overlay"
+        class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div id="success_modal" class="bg-[#293038] rounded-lg p-8 max-w-md w-full text-white">
+            <h2 class="text-2xl font-bold mb-4 text-center">🎉 Inscription Réussie !</h2>
+            <p class="text-center mb-6 text-gray-300">
+                Veuillez copier et conserver ces informations. Vous en aurez besoin pour vous connecter.
+            </p>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-400 mb-1">Votre Identifiant (8 chiffres)</label>
+                <div class="flex">
+                    <input id="modal_user_id" type="text" readonly
+                        class="flex-1 bg-[#121417] border border-gray-600 rounded-l-lg px-3 py-2 text-lg font-mono focus:outline-none">
+                    <button id="copy_id_button"
+                        class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-4 py-2 rounded-r-lg transition duration-200">
+                        Copier
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <label class="block text-sm font-medium text-gray-400 mb-1">Votre RIB (25 chiffres)</label>
+                <div class="flex">
+                    <input id="modal_user_rib" type="text" readonly
+                        class="flex-1 bg-[#121417] border border-gray-600 rounded-l-lg px-3 py-2 text-lg font-mono focus:outline-none">
+                    <button id="copy_rib_button"
+                        class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-4 py-2 rounded-r-lg transition duration-200">
+                        Copier
+                    </button>
+                </div>
+            </div>
+
+            <button id="modal_close_button"
+                class="w-full h-10 bg-green-600 hover:bg-green-700 rounded-lg transition duration-200">
+                J'ai noté ces informations ! (Aller à la connexion)
+            </button>
+        </div>
+    </div>
+    <!-- Dashboard Page -->
+    <div class="flex min-h-screen">
+        <section id="dashboard-view" class="flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
+            <h1 class="text-2xl md:text-3xl font-semibold mb-6 md:mb-8">Welcome back, Achraf</h1>
+
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">Accounts</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="flex flex-col sm:flex-row justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-gray-800 p-3 rounded-lg h-12 w-12 flex items-center justify-center">
+                                <img src="images/icons/bank.svg" alt="Bank">
+                            </div>
+                            <div>
+                                <p class="font-semibold">Main Account</p>
+                                <p class="text-xs md:text-sm text-gray-400">Checking 0378D193P02JG354</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                            <span class="text-lg md:text-xl font-bold">$2,500</span>
+                            <button class="p-2 rounded-3xl hover:bg-gray-700 transition"
+                                title="Toggle balance visibility">
+                                <img src="images/icons/hideshoweye.png" alt="Eye">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-gray-800 p-3 rounded-lg h-12 w-12 flex items-center justify-center">
+                                <img src="images/icons/pig.svg" alt="Pig">
+                            </div>
+                            <div>
+                                <p class="font-semibold">Savings Account</p>
+                                <p class="text-xs md:text-sm text-gray-400">Savings 507A96D4S87F92D8</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                            <span class="text-lg md:text-xl font-bold">$15,000</span>
+                            <button class="p-2 rounded-3xl hover:bg-gray-700 transition"
+                                title="Toggle balance visibility">
+                                <img src="images/icons/hideshoweye.png" alt="Eye">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">Quick Links</h2>
+                <div class="flex flex-wrap gap-3">
+                    <button
+                        class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-2 rounded-lg font-medium transition flex-1 sm:flex-none">Transfer</button>
+                    <button
+                        class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-2 rounded-lg font-medium transition flex-1 sm:flex-none">Pay
+                        Bills</button>
+                </div>
+            </div>
+
+            <div class="max-w-md">
+                <h2 class="text-xl font-semibold mb-4">Recent Transactions</h2>
+                <div class="bg-[#1A1D21] rounded-xl border border-gray-800 overflow-hidden text-sm md:text-base">
+                    <div class="grid grid-cols-3 p-4 text-gray-400 border-b border-gray-800 font-medium">
+                        <div>Date</div>
+                        <div>Type</div>
+                        <div class="text-center">Amount</div>
+                    </div>
+                    <div class="divide-y divide-gray-800">
+                        <div class="p-4 grid grid-cols-3 items-center">
+                            <div class="text-gray-400">07/15/2024</div>
+                            <div class="text-gray-400">Transfer</div>
+                            <div class="text-center text-red-500">-$75.00</div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3 items-center">
+                            <div class="text-gray-400">07/14/2024</div>
+                            <div class="text-gray-400">Transfer</div>
+                            <div class="text-center text-green-500">+$1,500.00</div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3 items-center">
+                            <div class="text-gray-400">07/12/2024</div>
+                            <div class="text-gray-400">Transfer</div>
+                            <div class="text-center text-red-500">-$50.00</div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3 items-center">
+                            <div class="text-gray-400">07/10/2024</div>
+                            <div class="text-gray-400">Transfer</div>
+                            <div class="text-center text-red-500">-$120.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 flex justify-center">
+                    <button
+                        class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-3 rounded-lg font-medium transition">
+                        Show All Transactions
+                    </button>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</body>
+
+</html>
