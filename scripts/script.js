@@ -18,8 +18,10 @@ const transactions = [
     {id: 14, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
     {id: 15, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false}
 ];
+var allTransactions = separateTransactions(transactions);
+var paginationBtns = document.getElementsByClassName("pagination");
 
-function showTransaction(id, date, type, amount, amountType){
+function showTransactionTable(id, date, type, amount, amountType){
     const original = document.querySelector('.transaction-table');
     const container = document.getElementById('transactions-container');
     const newTable = original.cloneNode(true);
@@ -34,7 +36,6 @@ function showTransaction(id, date, type, amount, amountType){
 
     container.appendChild(newTable);
 }
-
 function separateTransactions(arr){
     const updatedtransactions = [];
     let temp = [];
@@ -56,14 +57,24 @@ function separateTransactions(arr){
             updatedtransactions[counter] = temp.filter(obj => Object.keys(obj).length > 0);
         }
     }
-    
+
     for(let i=0; i<updatedtransactions.length; i++){
         updatedtransactions[i] = updatedtransactions[i].filter(obj => Object.keys(obj).length > 0);
     }
 
     return updatedtransactions
 }
+function showTransactionOfEachTable(){
+    for(let i=0; i<paginationBtns.length; i++){
+        if(paginationBtns[i].classList.contains('bg-[#283039]')){
+            allTransactions[parseInt(paginationBtns[i].textContent)-1].forEach(t => {
+                showTransactionTable(t.id, t.date, t.type, t.amount, t.amountType);
+            });
+        }
+    }
+}
 
-console.log(separateTransactions(transactions));
-// .filter(obj => Object.keys(obj).length > 0)
-//showTransaction(transaction.id, transaction.date, transaction.type, transaction.amount, transaction.amountType);
+
+
+
+showTransactionOfEachTable();
