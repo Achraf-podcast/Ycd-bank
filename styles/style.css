@@ -72,3 +72,30 @@ body{
 
 .error{background-color: #f44336;}
 .success{background-color: #14A44D;}
+
+@media print {
+  
+  /* 1. Cache tout par défaut */
+  body > * {
+    display: none !important;
+  }
+
+  /* 2. Montre SEULEMENT le modal du RIB et ses parents */
+  body, #display_rib_overlay {
+    display: block !important;
+  }
+
+  /* 3. Assure-toi que le modal prend toute la page */
+  #display_rib_overlay {
+    position: static !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: white !important; /* Force un fond blanc pour l'impression */
+  }
+
+  /* 4. Cache le bouton "Fermer" ou "Exporter" du modal */
+  #display_rib_overlay #display_rib_close_button,
+  #display_rib_overlay #export_pdf_button {
+    display: none !important;
+  }
+}

@@ -19,13 +19,13 @@
                 <div class="w-64 sidebar">
                     <div class="ycdlogo"><img src="images/logoycdbank.png" alt="YCD bank logo"></div>
                     <div class="menu">
-                        <button class="menu-item">
+                        <button id="go_to_dashboard" class="menu-item">
                             <div class="icon"><img src="images/icons/home.svg" alt="home"></div>
                             <p>Dashboard</p>
                         </button>
                     </div>
                     <div class="menu">
-                        <button id = "go_to_myaccounts" class="menu-item">
+                        <button id="go_to_myaccounts" class="menu-item">
                             <div class="icon"><img src="images/icons/card1.svg" alt=" My accounts"></div>
                             <p>My accounts</p>
                         </button>
@@ -163,7 +163,77 @@
                     </button>
                 </div>
             </div>
+        </section>
+        <!-- page My Accounts -->
+        <section id="myaccounts-view" class="flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
+            <h1 class="text-3xl md:text-3xl font-semibold mb-2">My Accounts</h1>
+            <p style="color:#9EABBA">View and manage your accounts</p>
+            <div class="mt-16">
+                <h2 class="text-2xl font-bold mt-8">Main Account</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="flex flex-col sm:flex-row justify-between gap-4">
+                        <div class="flex items-center gap-4 mt-6">
+                            <div>
+                                <p class="font-bold">Current Balance</p>
+                                <p class="text-xs md:text-sm text-gray-400">Account Number 0378D193P02JG354</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                            <span id="balance_amount_3" data-balance="$2500"
+                                class="text-lg md:text-xl font-bold">$2,500</span>
+                            <button id="toggle_balance_3" class="p-2 rounded-3xl hover:bg-gray-700 transition"
+                                title="Toggle balance visibility">
+                                <img id="balance_icon_3" class="w-8 h-8" src="images/icons/hide.png" alt="Eye">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <button id="display_rib_button"
+                            class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-5 flex items-center justify-center text-sm gap-2">
+                            Display RIB
+                        </button>
 
+                        <button id="export_rib_button"
+                            class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-3 flex items-center justify-center text-sm gap-2">
+                            Export RIB
+                            <img class="w-5 h-5" src="images/icons/pdf.svg" alt="Icon Pdf">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-16">
+                <h2 class="text-2xl font-bold mt-8">Savings Account</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="flex flex-col sm:flex-row justify-between gap-4">
+                        <div class="flex items-center gap-4 mt-6">
+                            <div>
+                                <p class="font-bold">Current Balance</p>
+                                <p class="text-xs md:text-sm text-gray-400">Account Number 507A96D4S87F92D8</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                            <span id="balance_amount_4" class="text-lg md:text-xl font-bold"
+                                data-balance="$15,000">$15,000</span>
+                            <button id="toggle_balance_4" class="p-2 rounded-3xl hover:bg-gray-700 transition"
+                                title="Toggle balance visibility">
+                                <img id="balance_icon_4" class="w-8 h-8" src="images/icons/hide.png" alt="Eye">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <button id = "display_rib_button_1"
+                            class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-5 flex items-center justify-center text-sm gap-2">
+                            Display RIB
+                        </button>
+
+                        <button id="export_rib_button_1"
+                            class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-3 flex items-center justify-center text-sm gap-2">
+                            Export RIB
+                            <img class="w-5 h-5" src="images/icons/pdf.svg" alt="Icon Pdf">
+                        </button>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- Sign Up Form -->
         <section id="signup_page" class="min-h-screen w-full flex items-center justify-center p-4 hidden">
@@ -260,7 +330,7 @@
     <!-- Popup qui affiche l'id et le rib apres l'inscription -->
     <div id="success_modal_overlay"
         class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-        <div id="success_modal" class="bg-[#293038] rounded-lg p-8 max-w-md w-full text-white">
+        <div class="bg-[#293038] rounded-lg p-8 max-w-md w-full text-white">
             <h2 class="text-2xl font-bold mb-4 text-center">Registration successful !</h2>
             <p class="text-center mb-6 text-gray-300">
                 Please copy and save this information. You will need it to log in.
@@ -297,7 +367,41 @@
             </button>
         </div>
     </div>
+    <div id="display_rib_overlay"
+        class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-[#293038] rounded-lg p-8 max-w-md w-full text-white">
+            <h2 class="text-2xl font-bold mb-4 text-center">Your ID and bank accounts details</h2>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-400 mb-1">Your 8-digit ID</label>
+                <div class="flex">
+                    <input id="modal_user_id_1" type="text" readonly
+                        class="flex-1 bg-[#121417] border border-gray-600 rounded-l-lg px-3 py-2 text-lg font-mono focus:outline-none">
+                    <button id="copy_id_button"
+                        class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-4 py-2 rounded-r-lg transition duration-200">
+                        Copy
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <label class="block text-sm font-medium text-gray-400 mb-1">Your bank account details (25
+                    digits)</label>
+                <div class="flex">
+                    <input id="modal_user_rib_1" type="text" readonly
+                        class="flex-1 bg-[#121417] border border-gray-600 rounded-l-lg px-3 py-2 text-lg font-mono focus:outline-none">
+                    <button id="copy_rib_button"
+                        class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-4 py-2 rounded-r-lg transition duration-200">
+                        Copy
+                    </button>
+                </div>
+            </div>
+
+            <button id="display_rib_close_button"
+                class="w-full h-10 bg-green-600 hover:bg-green-700 rounded-lg transition duration-200">
+                Back to navigation
+            </button>
+        </div>
+    </div>
     </div>
 </body>
-
-</html>

@@ -9,29 +9,76 @@ const register_now_button = document.getElementById("register_now_button")
 const go_to_login_button = document.getElementById("go_to_login_button")
 
 const success_modal_overlay = document.getElementById("success_modal_overlay")
+const display_rib_overlay = document.getElementById("display_rib_overlay")
 const modal_user_id = document.getElementById("modal_user_id")
 const modal_user_rib = document.getElementById("modal_user_rib")
+const modal_user_id_1 = document.getElementById("modal_user_id_1")
+const modal_user_rib_1 = document.getElementById("modal_user_rib_1")
 const copy_id_button = document.getElementById("copy_id_button")
 const copy_rib_button = document.getElementById("copy_rib_button")
 const modal_close_button = document.getElementById("modal_close_button")
+const display_rib_close_button = document.getElementById("display_rib_close_button")
 const left_side_menu = document.getElementById("left_side_menu")
 
 const dashboard_view = document.getElementById("dashboard-view")
 const dashboard_username = document.getElementById("dashboard_username")
+const go_to_dashboard_button = document.getElementById("go_to_dashboard")
+
+go_to_dashboard_button.addEventListener("click", () => {
+    go_to_dashboard()
+})
+
 const dashboard_rib = document.getElementById("dashboard_rib")
-let is_balance_visible_1 = true
-let is_balance_visible_2 = true
+const display_rib_button = document.getElementById("display_rib_button")
 
+const display_rib_button_1 = document.getElementById("display_rib_button_1")
 
+const export_rib_button = document.getElementById("export_rib_button")
+const export_rib_button_1 = document.getElementById("export_rib_button_1")
+display_rib_button.addEventListener("click", () => {
+// 1. Récupérer l'utilisateur connecté depuis la session
+    const connected_user_json = sessionStorage.getItem("connected_user")
+    const currentUser = JSON.parse(connected_user_json)
+    modal_user_id_1.value = currentUser.id
+    modal_user_rib_1.value = currentUser.rib
+    display_rib_overlay.classList.remove("hidden")
+})
+
+display_rib_button_1.addEventListener("click", () =>{
+    // 1. Récupérer l'utilisateur connecté depuis la session
+    const connected_user_json = sessionStorage.getItem("connected_user");
+    const currentUser = JSON.parse(connected_user_json)
+    modal_user_id_1.value = currentUser.id
+    modal_user_rib_1.value = currentUser.rib
+    display_rib_overlay.classList.remove("hidden")
+})
+display_rib_close_button.addEventListener("click", () => {
+    display_rib_overlay.classList.add("hidden")
+})
+
+export_rib_button.addEventListener("click", () => {
+    window.print()
+})
+export_rib_button_1.addEventListener("click" ,() =>{
+    window.print()
+})
 const recent_transactions_list = document.getElementById("recent_transactions_list")
 const recent_transactions_table = document.getElementById("recent_transactions_table")
 const no_transactions_message = document.getElementById("no_transactions_message")
 const show_all_button_container = document.getElementById("show_all_button_container")
 
-const go_to_myaccount = document.getElementById("go_to_myaccount")
-// go_to_myaccount.addEventListener("click" , () =>{
+const go_to_myaccount = document.getElementById("go_to_myaccounts")
+const my_accounts_view = document.getElementById("myaccounts-view")
 
-// })
+go_to_myaccount.addEventListener("click", () => {
+    go_to_myaccounts()
+})
+
+let is_balance_visible_1 = true
+let is_balance_visible_2 = true
+let is_balance_visible_3 = true
+let is_balance_visible_4 = true
+
 // Show / hide balance for main account in dashboard page
 const balance_amount_1 = document.getElementById("balance_amount_1")
 const toggle_balance_button_1 = document.getElementById("toggle_balance_1")
@@ -66,7 +113,41 @@ toggle_balance_button_2.addEventListener("click", () => {
     is_balance_visible_2 = !is_balance_visible_2
 })
 
-const all_pages = [login_page, signup_page, dashboard_view]
+// Show / hide balance for main account in my account page
+const balance_amount_3 = document.getElementById("balance_amount_3")
+const toggle_balance_button_3 = document.getElementById("toggle_balance_3")
+const balance_icon_3 = document.getElementById("balance_icon_3")
+toggle_balance_button_3.addEventListener("click", () => {
+    if (is_balance_visible_3 === true) {
+        balance_amount_3.textContent = "****"
+        balance_icon_3.src = "images/icons/show.png"
+    }
+    else {
+        const real_balance = balance_amount_3.dataset.balance
+        balance_amount_3.textContent = real_balance
+        balance_icon_3.src = "images/icons/hideshoweye.png"
+    }
+    is_balance_visible_3 = !is_balance_visible_3
+})
+
+// Show / hide balance for savings account in my account page
+const balance_amount_4 = document.getElementById("balance_amount_4")
+const toggle_balance_button_4 = document.getElementById("toggle_balance_4")
+const balance_icon_4 = document.getElementById("balance_icon_4")
+toggle_balance_button_4.addEventListener("click", () => {
+    if (is_balance_visible_4 === true) {
+        balance_amount_4.textContent = "****"
+        balance_icon_4.src = "images/icons/show.png"
+    }
+    else {
+        const real_balance = balance_amount_4.dataset.balance
+        balance_amount_4.textContent = real_balance
+        balance_icon_4.src = "images/icons/hideshoweye.png"
+    }
+    is_balance_visible_4 = !is_balance_visible_4
+})
+
+const all_pages = [login_page, signup_page, dashboard_view, my_accounts_view]
 
 function recent_transactions() {
     // 1. Récupérer l'utilisateur connecté
@@ -147,6 +228,13 @@ function go_to_dashboard() {
     recent_transactions()
 }
 
+function go_to_myaccounts() {
+    all_pages.forEach(page => page.classList.add("hidden"))
+    my_accounts_view.classList.remove("hidden")
+    left_side_menu.classList.remove("hidden")
+}
+
+// Affiche le dashboard ou la login page si l'utilisateur n'est pas connecté
 window.addEventListener("DOMContentLoaded", () => {
     // On regarde si un utilisateur est gardé en mémoire de session
     if (sessionStorage.getItem("connected_user")) {
@@ -168,6 +256,7 @@ function generate_rib(length) {
     return result_rib
 }
 
+// Fonction qui affiche une notification en vert
 function display_green_notification(msg) {
     error_notification.style.display = "none";
     success_notification.textContent = msg
@@ -177,6 +266,7 @@ function display_green_notification(msg) {
     }, 3000)
 }
 
+// Fonction qui affiche une notification en rouge
 function display_red_notification(msg) {
     success_notification.style.display = "none"
     error_notification.textContent = msg
@@ -240,7 +330,7 @@ signup_form.addEventListener("submit", (event) => {
         mot_de_passe: password,
         rib: rib,
         id: id,
-        transactions : [{id: 1, date: "2025-10-26", type: "Payment", amount: -100, amountType: true},]
+        transactions: [{ id: 1, date: "2025-10-26", type: "Payment", amount: -100, amountType: true },]
     }
     users.push(new_user)
 
