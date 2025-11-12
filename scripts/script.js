@@ -4,10 +4,10 @@ const transactions = [
     {id: 3, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
     {id: 4, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
 
-    {id: 5, date: "2025-10-26", type: "Payment", amount: 100, amountType: true},
-    {id: 6, date: "2025-10-26", type: "Transfer", amount: -90, amountType: false},
-    {id: 7, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
-    {id: 8, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
+    {id: 5, date: "2025-10-26", type: "Payment", amount: 200, amountType: true},
+    {id: 6, date: "2025-10-26", type: "Transfer", amount: -20, amountType: false},
+    {id: 7, date: "2025-10-26", type: "Transfer", amount: 10, amountType: true},
+    {id: 8, date: "2025-10-26", type: "Recharge", amount: -5, amountType: false},
 
     {id: 9, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
     {id: 10, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
@@ -16,10 +16,20 @@ const transactions = [
 
     {id: 13, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
     {id: 14, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
-    {id: 15, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false}
+    {id: 15, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
+    {id: 16, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
+
+    {id: 17, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
+    {id: 18, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
+    {id: 19, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
+    {id: 20, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
+
+    {id: 21, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
+    {id: 22, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
+    {id: 23, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false}
 ];
 var allTransactions = separateTransactions(transactions);
-var paginationBtns = document.getElementsByClassName("pagination");
+var paginationIndex = 1;
 
 function showTransactionTable(id, date, type, amount, amountType){
     const original = document.querySelector('.transaction-table');
@@ -74,17 +84,40 @@ function showTransactionOfEachTable(){
     }
 }
 function switchPagination(num){
-    for(let i=0; i<paginationBtns.length; i++){
+    for(let i=0; i<4; i++){
         paginationBtns[i].classList.remove('bg-[#283039]');
-        paginationBtns[num].classList.add('bg-[#283039]')
+        paginationBtns[num%4].classList.add('bg-[#283039]')
+    }
+}
+function showPaginationButtons(){
+    for(let i=paginationIndex; i<=paginationIndex+3; i++){
+        let btn = document.createElement("button");
+        btn.classList = "text-sm font-normal leading-normal flex size-10 items-center justify-center text-white rounded-full pagination";
+        btn.textContent = i;
+        document.getElementById('pagination-container').insertBefore(btn, document.getElementById('next-arrow'));
     }
 }
 
 document.getElementById("pagination-container").addEventListener("click", (e) => {
-    switchPagination(parseInt(e.target.textContent)-1);
-    document.getElementById('transactions-container').innerHTML = "";
-    showTransactionOfEachTable();
+    if(e.target.textContent != ""){
+        switchPagination(parseInt(e.target.textContent)-1);
+        document.getElementById('transactions-container').innerHTML = "";
+        showTransactionOfEachTable();
+    }
+    else{
+        try{
+            if(e.target.alt == "arrow right icon"){
+                paginationIndex += 4;
+            }else{paginationIndex -= 4;}
+            document.querySelectorAll(".pagination").forEach(btn => btn.remove());
+            showPaginationButtons();
+        }catch(er){console.log(er);}
+    }
 });
 
+showPaginationButtons();
+var paginationBtns = document.getElementsByClassName("pagination");
+paginationBtns[0].classList.add("bg-[#283039]");
 
+//if(allTransactions[4] === undefined){console.log("yes");}
 showTransactionOfEachTable();
