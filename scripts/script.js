@@ -24,6 +24,18 @@ const dashboard_view = document.getElementById("dashboard-view")
 const dashboard_username = document.getElementById("dashboard_username")
 const go_to_dashboard_button = document.getElementById("go_to_dashboard")
 
+const go_to_transfers_button = document.getElementById("go_to_transfers_button")
+
+go_to_transfers_button.addEventListener("click" , () =>{
+    go_to_transfers()
+})
+
+function go_to_transfers(){
+    all_pages.forEach(page => page.classList.add("hidden"))
+    transfers_view.classList.remove("hidden")
+    left_side_menu.classList.remove("hidden")
+}
+
 go_to_dashboard_button.addEventListener("click", () => {
     go_to_dashboard()
 })
@@ -69,6 +81,7 @@ const show_all_button_container = document.getElementById("show_all_button_conta
 
 const go_to_myaccount = document.getElementById("go_to_myaccounts")
 const my_accounts_view = document.getElementById("myaccounts-view")
+const transfers_view = document.getElementById("transfers-view")
 
 go_to_myaccount.addEventListener("click", () => {
     go_to_myaccounts()
@@ -147,7 +160,7 @@ toggle_balance_button_4.addEventListener("click", () => {
     is_balance_visible_4 = !is_balance_visible_4
 })
 
-const all_pages = [login_page, signup_page, dashboard_view, my_accounts_view]
+const all_pages = [login_page, signup_page, dashboard_view, my_accounts_view,transfers_view]
 
 function recent_transactions() {
     // 1. Récupérer l'utilisateur connecté
