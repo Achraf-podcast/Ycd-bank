@@ -26,6 +26,16 @@ const left_side_menu = document.getElementById("left_side_menu")
 const beneficiaries_view = document.getElementById("beneficiaries-view")
 const go_to_beneficiaries_button = document.getElementById("go_to_beneficiaries")
 
+const currency_converter_view = document.getElementById("currencyConverter-view")
+const go_to_currency_converter_button = document.getElementById("go_to_currencyConverter-view")
+
+go_to_currency_converter_button.addEventListener("click", () => {
+    all_pages.forEach(page => page.classList.add("hidden"))
+    currency_converter_view.classList.remove("hidden")
+    left_side_menu.classList.remove("hidden")
+    let users = JSON.parse(localStorage.getItem("users")) || []
+})
+
 go_to_beneficiaries_button.addEventListener("click", () => {
     all_pages.forEach(page => page.classList.add("hidden"))
     beneficiaries_view.classList.remove("hidden")
@@ -199,7 +209,7 @@ toggle_balance_button_4.addEventListener("click", () => {
     is_balance_visible_4 = !is_balance_visible_4
 })
 
-const all_pages = [login_page, signup_page, dashboard_view, my_accounts_view, transfers_view, beneficiaries_view, transactions_view]
+const all_pages = [login_page, signup_page, dashboard_view, my_accounts_view, transfers_view, beneficiaries_view, transactions_view, currency_converter_view]
 
 
 const add_beneficiary_form = document.getElementById("add_beneficiary_form");
