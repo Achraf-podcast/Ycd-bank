@@ -25,6 +25,16 @@ const left_side_menu = document.getElementById("left_side_menu")
 
 const beneficiaries_view = document.getElementById("beneficiaries-view")
 const go_to_beneficiaries_button = document.getElementById("go_to_beneficiaries")
+const quick_links_transfer_button = document.getElementById("quick_links_transfer_button")
+const quick_links_paybills_button = document.getElementById("quick_links_paybills_button")
+
+quick_links_transfer_button.addEventListener("click", () =>{
+    go_to_transfers()
+})
+
+quick_links_paybills_button.addEventListener("click", () =>{
+    go_to_transfers()
+})
 
 const currency_converter_view = document.getElementById("currencyConverter-view")
 const go_to_currency_converter_button = document.getElementById("go_to_currencyConverter-view")
@@ -119,8 +129,6 @@ const recent_transactions_list = document.getElementById("recent_transactions_li
 const recent_transactions_table = document.getElementById("recent_transactions_table")
 const no_transactions_message = document.getElementById("no_transactions_message")
 const show_all_button_container = document.getElementById("show_all_button_container")
-const show_all_transactions_button = document.getElementById("show_all_transactions_button")
-const show_less_transactions_button = document.getElementById("show_less_transactions_button")
 
 const recent_beneficiaries_list = document.getElementById("recent_beneficiaries_list")
 const recent_beneficiaries_table = document.getElementById("recent_beneficiaries_table")
@@ -131,6 +139,13 @@ const show_less_beneficiaries_button = document.getElementById("show_less_benefi
 const go_to_myaccount = document.getElementById("go_to_myaccounts")
 const my_accounts_view = document.getElementById("myaccounts-view")
 const transfers_view = document.getElementById("transfers-view")
+
+show_all_button_container.addEventListener("click", () => {
+    all_pages.forEach(page => page.classList.add("hidden"))
+    transactions_view.classList.remove("hidden")
+    left_side_menu.classList.remove("hidden")
+    let users = JSON.parse(localStorage.getItem("users")) || []
+})
 
 go_to_myaccount.addEventListener("click", () => {
     go_to_myaccounts()
@@ -253,7 +268,7 @@ add_beneficiary_form.addEventListener("submit", (event) => {
 })
 
 // Fonction qui affiche les 4 dernieres transactions dans le dashboard
-function recent_transactions(show_all = false) {
+function recent_transactions() {
     // 1. Récupérer l'utilisateur connecté
     const currentUser = JSON.parse(sessionStorage.getItem("connected_user"))
 
@@ -265,72 +280,50 @@ function recent_transactions(show_all = false) {
         // S'il n'y en a pas :
         no_transactions_message.classList.remove("hidden")
         recent_transactions_table.classList.add("hidden")
-        show_all_button_container.classList.add("hidden")
-        show_less_transactions_button.classList.add("hidden") // Cache aussi le nouveau bouton
-        return; // On arrête la fonction
-    }
-
-    // S'il y en a :
-    no_transactions_message.classList.add("hidden")
-    recent_transactions_table.classList.remove("hidden")
-    // On affiche le conteneur des boutons (les boutons eux-mêmes seront gérés plus bas)
-    show_all_button_container.classList.remove("hidden")
-
-    // 4. ✅ LOGIQUE MISE À JOUR : On prend 4 ou TOUS
-    let transactions_to_show;
-    const all_transactions = currentUser.transactions.slice().reverse();
-
-    if (show_all) {
-        transactions_to_show = all_transactions; // On prend tout
-        show_all_transactions_button.classList.add("hidden");
-        show_less_transactions_button.classList.remove("hidden");
+        show_all_button_container.classList.add("hidden") // Cache le bouton
     } else {
-        transactions_to_show = all_transactions.slice(0, 4); // On prend 4
-        // On affiche "Show All" SEULEMENT s'il y en a plus de 4
-        if (all_transactions.length > 4) {
-            show_all_transactions_button.classList.remove("hidden");
+        // S'il y en a :
+        no_transactions_message.classList.add("hidden")
+        recent_transactions_table.classList.remove("hidden")
+
+        // 4. Prendre les 4 dernières transactions (les plus récentes)
+        const recent = currentUser.transactions.slice().reverse().slice(0, 4);
+
+        // 5. Gérer l'affichage du bouton "Show All"
+        if (currentUser.transactions.length > 4) {
+            show_all_button_container.classList.remove("hidden");
         } else {
-            show_all_transactions_button.classList.add("hidden");
-        }
-        show_less_transactions_button.classList.add("hidden");
-    }
-
-
-    // 5. Créer le HTML pour chaque transaction
-    transactions_to_show.forEach(tx => {
-        // Détermine la couleur (rouge/vert)
-        const amountClass = tx.amount < 0 ? 'text-red-500' : 'text-green-500';
-
-        // --- Formatage du $ ---
-        const amount_formatted = tx.amount.toFixed(2);
-        let amount_display;
-        if (tx.amount < 0) {
-            amount_display = `${amount_formatted}$`;
-        } else {
-            amount_display = `+${amount_formatted}$`;
+            show_all_button_container.classList.add("hidden");
         }
 
-        const transactionRow = `
+        // 6. Créer le HTML pour chaque transaction
+        recent.forEach(tx => {
+            // Détermine la couleur (rouge/vert)
+            const amountClass = tx.amount < 0 ? 'text-red-500' : 'text-green-500';
+
+            // --- Formatage du $ ---
+            const amount_formatted = tx.amount.toFixed(2);
+            let amount_display;
+            if (tx.amount < 0) {
+                amount_display = `${amount_formatted}$`;
+            } else {
+                amount_display = `+${amount_formatted}$`;
+            }
+
+            const transactionRow = `
                 <div class="p-4 grid grid-cols-3 items-center">
-                <div class="text-gray-400">${tx.date}</div>
-                <div class="text-gray-400">${tx.type}</div>
-                <div class="text-center font-medium ${amountClass}">
-                ${amount_display}
+                    <div class="text-gray-400">${tx.date}</div>
+                    <div class="text-gray-400">${tx.type}</div>
+                    <div class="text-center font-medium ${amountClass}">
+                        ${amount_display}
                     </div>
-                </div>
-            `
-        // Ajoute la nouvelle ligne au tableau
-        recent_transactions_list.innerHTML += transactionRow;
-    })
+                    </div>
+                `
+            // Ajoute la nouvelle ligne au tableau
+            recent_transactions_list.innerHTML += transactionRow;
+        })
+    }
 }
-
-show_all_transactions_button.addEventListener("click", () => {
-    recent_transactions(true); // Appelle la fonction en mode "tout afficher"
-});
-
-show_less_transactions_button.addEventListener("click", () => {
-    recent_transactions(false); // Appelle la fonction en mode "par défaut" (4)
-})
 
 
 // Fonction qui affiche les 4 derniers beneficiaires 
@@ -1063,7 +1056,7 @@ async function convertCurrency(amount, from, to) {
         const convertedAmount = amount * rate;
 
         document.querySelector('#converted-currency').textContent = convertedAmount.toFixed(2);
-    }catch{document.querySelector('#converted-currency').textContent = "An error caused by the server, please try again";}
+    } catch { document.querySelector('#converted-currency').textContent = "An error caused by the server, please try again"; }
 }
 
 let inputAmount = document.getElementsByClassName('convert-input')[0];
