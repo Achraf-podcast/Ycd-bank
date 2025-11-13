@@ -23,16 +23,19 @@ const modal_close_button = document.getElementById("modal_close_button")
 const display_rib_close_button = document.getElementById("display_rib_close_button")
 const left_side_menu = document.getElementById("left_side_menu")
 
+const myaccounts_main_rib = document.getElementById("myaccounts_main_rib");
+const myaccounts_savings_rib = document.getElementById("myaccounts_savings_rib");
+
 const beneficiaries_view = document.getElementById("beneficiaries-view")
 const go_to_beneficiaries_button = document.getElementById("go_to_beneficiaries")
 const quick_links_transfer_button = document.getElementById("quick_links_transfer_button")
 const quick_links_paybills_button = document.getElementById("quick_links_paybills_button")
 
-quick_links_transfer_button.addEventListener("click", () =>{
+quick_links_transfer_button.addEventListener("click", () => {
     go_to_transfers()
 })
 
-quick_links_paybills_button.addEventListener("click", () =>{
+quick_links_paybills_button.addEventListener("click", () => {
     go_to_transfers()
 })
 
@@ -480,6 +483,27 @@ function go_to_dashboard() {
 
 function go_to_myaccounts() {
     all_pages.forEach(page => page.classList.add("hidden"))
+
+    // 1. On récupère l'utilisateur depuis la session
+    const connected_user_json = sessionStorage.getItem("connected_user");
+    const currentUser = JSON.parse(connected_user_json);
+
+    // 2. On remplit la page "My Accounts" avec ses infos
+    if (currentUser) {
+        // Met à jour les RIBs
+        myaccounts_main_rib.textContent = `Account Number ${currentUser.rib}`;
+        myaccounts_savings_rib.textContent = `Account Number ${currentUser.rib_savings}`;
+
+        // Met à jour les soldes (avec le $ à droite)
+        balance_amount_3.textContent = `${currentUser.main_balance.toFixed(2)}$`;
+        balance_amount_4.textContent = `${currentUser.savings_balance.toFixed(2)}$`;
+
+        // Met à jour les data-balance pour le show/hide (avec le $ à droite)
+        balance_amount_3.dataset.balance = `${currentUser.main_balance.toFixed(2)}$`;
+        balance_amount_4.dataset.balance = `${currentUser.savings_balance.toFixed(2)}$`;
+    }
+
+    // 3. On affiche la page
     my_accounts_view.classList.remove("hidden")
     left_side_menu.classList.remove("hidden")
 }

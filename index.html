@@ -132,7 +132,7 @@
                 <div class="flex flex-wrap gap-3">
                     <button id="quick_links_transfer_button"
                         class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-2 rounded-lg font-medium transition flex-1 sm:flex-none">Transfer</button>
-                    <button id = "quick_links_paybills_button"
+                    <button id="quick_links_paybills_button"
                         class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-2 rounded-lg font-medium transition flex-1 sm:flex-none">Pay
                         Bills</button>
                 </div>
@@ -280,7 +280,7 @@
                 </div>
         </section>
         <!-- page My Accounts -->
-        <section id="myaccounts-view" class="flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
+        <section id="myaccounts-view" class="hidden flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
             <h1 class="text-3xl md:text-3xl font-semibold mb-2">My Accounts</h1>
             <p style="color:#9EABBA">View and manage your accounts</p>
             <div class="mt-16">
@@ -290,15 +290,14 @@
                         <div class="flex items-center gap-4 mt-6">
                             <div>
                                 <p class="font-bold">Current Balance</p>
-                                <p class="text-xs md:text-sm text-gray-400">Account Number 0378D193P02JG354</p>
+                                <p id="myaccounts_main_rib" class="text-xs md:text-sm text-gray-400"></p>
                             </div>
                         </div>
                         <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
-                            <span id="balance_amount_3" data-balance="$2500"
-                                class="text-lg md:text-xl font-bold">$2,500</span>
+                            <span id="balance_amount_3" data-balance="" class="text-lg md:text-xl font-bold"></span>
                             <button id="toggle_balance_3" class="p-2 rounded-3xl hover:bg-gray-700 transition"
                                 title="Toggle balance visibility">
-                                <img id="balance_icon_3" class="w-8 h-8" src="images/icons/hide.png" alt="Eye">
+                                <img id="balance_icon_3" class="w-8 h-8" src="images/icons/hideshoweye.png" alt="Eye">
                             </button>
                         </div>
                     </div>
@@ -307,7 +306,6 @@
                             class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-5 flex items-center justify-center text-sm gap-2">
                             Display RIB
                         </button>
-
                         <button id="export_rib_button"
                             class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-3 flex items-center justify-center text-sm gap-2">
                             Export RIB
@@ -323,15 +321,14 @@
                         <div class="flex items-center gap-4 mt-6">
                             <div>
                                 <p class="font-bold">Current Balance</p>
-                                <p class="text-xs md:text-sm text-gray-400">Account Number 507A96D4S87F92D8</p>
+                                <p id="myaccounts_savings_rib" class="text-xs md:text-sm text-gray-400"></p>
                             </div>
                         </div>
                         <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
-                            <span id="balance_amount_4" class="text-lg md:text-xl font-bold"
-                                data-balance="$15,000">$15,000</span>
+                            <span id="balance_amount_4" class="text-lg md:text-xl font-bold" data-balance=""></span>
                             <button id="toggle_balance_4" class="p-2 rounded-3xl hover:bg-gray-700 transition"
                                 title="Toggle balance visibility">
-                                <img id="balance_icon_4" class="w-8 h-8" src="images/icons/hide.png" alt="Eye">
+                                <img id="balance_icon_4" class="w-8 h-8" src="images/icons/hideshoweye.png" alt="Eye">
                             </button>
                         </div>
                     </div>
@@ -340,7 +337,6 @@
                             class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-5 flex items-center justify-center text-sm gap-2">
                             Display RIB
                         </button>
-
                         <button id="export_rib_button_1"
                             class="bg-[#293038] hover:bg-gray-700 transition rounded-lg h-10 px-3 flex items-center justify-center text-sm gap-2">
                             Export RIB
@@ -490,7 +486,8 @@
                 </div>
 
                 <div class="px-4 py-3">
-                    <div class="bg-[#1A1D21] rounded-xl border border-gray-800 overflow-hidden text-sm md:text-base max-w-1xl">
+                    <div
+                        class="bg-[#1A1D21] rounded-xl border border-gray-800 overflow-hidden text-sm md:text-base max-w-1xl">
 
                         <div class="hidden md:grid grid-cols-3 p-4 text-white-400 border-b border-gray-800 font-medium">
                             <div>Date</div>
