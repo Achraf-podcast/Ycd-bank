@@ -165,7 +165,7 @@
                 </div>
             </div>
         </section>
-                <!-- Page Transfers -->
+        <!-- Page Transfers -->
         <section id="transfers-view" class="hidden flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
             <h1 class="text-3xl md:text-3xl font-semibold mb-2">Make a Transfer</h1>
             <div>
@@ -199,7 +199,7 @@
                     </div>
                 </div>
         </section>
-         <section id="beneficiaries-view" class="flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
+        <section id="beneficiaries-view" class="flex-1 bg-[#121417] text-white p-4 md:p-8 overflow-y-auto">
             <h1 class="text-3xl md:text-3xl font-semibold mb-2">Manage Beneficiaries</h1>
             <p style="color:#9EABBA">Add, edit, or remove beneficiaries for your account.</p>
             <div>
@@ -466,6 +466,53 @@
             </div>
             </form>
         </section>
+        
+        <section id="transactions-view" class="flex-1 text-white p-4 md:p-8 overflow-y-auto">
+            <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                <div class="flex flex-wrap justify-between gap-3 p-4">
+                    <h2 class="text-white tracking-light text-[32px] font-bold leading-tight min-w-72">Transactions</h2>
+                </div>
+
+                <div class="px-4 py-3 @container">
+                    <div class="bg-[#1A1D21] rounded-xl border border-gray-800 overflow-hidden text-sm md:text-base">
+
+                        <div class="hidden md:grid grid-cols-4 p-4 text-white-400 border-b border-gray-800 font-medium">
+                            <div>Date</div>
+                            <div>Type</div>
+                            <div>Amount</div>
+                            <div class="text-center">Delete</div>
+                        </div>
+
+                        <div class="divide-y divide-gray-800" id="transactions-container">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center p-4" id="pagination-container">
+                    <button class="flex size-10 items-center justify-center">
+                        <img src="images/icons/arrow-left.png" alt="arrow left icon" class="w-5 h-5">
+                    </button>
+
+                    <button class="flex size-10 items-center justify-center" id="next-arrow">
+                        <img src="images/icons/arrow-right.png" alt="arrow right icon" class="w-5 h-5">
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center transaction-table hidden">
+            <div class="text-gray-400">
+                <span class="font-medium text-white md:hidden">Date: </span>
+                <span></span>
+            </div>
+            <div class="text-gray-400">
+                <span class="font-medium text-white md:hidden">Type: </span>
+                <span></span>
+            </div>
+            <span class="w-full md:justify-self-center"></span>
+            <button class="justify-self-center md:justify-self-center"><img src="images/icons/trash.svg"></button>
+        </div>
 
         <!-- Notifications d'erreur ou de succes -->
         <div class="notification success" id="success_notification"></div>
@@ -549,5 +596,3 @@
         </div>
     </div>
 </body>
-
-</html>
