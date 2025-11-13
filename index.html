@@ -56,7 +56,7 @@
                         </button>
                     </div>
                     <div class="menu">
-                        <button id = "go_to_transactions" class="menu-item">
+                        <button id="go_to_transactions" class="menu-item">
                             <div class="icon"><img src="images/icons/menu.svg" alt="transactions"></div>
                             <p>Transactions</p>
                         </button>
@@ -91,7 +91,7 @@
                             </div>
                             <div>
                                 <p class="font-semibold">Main Account</p>
-                                <p id="dashboard_rib" class="text-xs md:text-sm text-gray-400">Checking 0378D193P02JG354
+                                <p id="dashboard_rib" class="text-xs md:text-sm text-gray-400">
                                 </p>
                             </div>
                         </div>
@@ -111,7 +111,8 @@
                             </div>
                             <div>
                                 <p class="font-semibold">Savings Account</p>
-                                <p class="text-xs md:text-sm text-gray-400">Savings 507A96D4S87F92D8</p>
+                                <p id="dashboard_savings_rib" class="text-xs md:text-sm text-gray-400">Savings
+                                    507A96D4S87F92D8</p>
                             </div>
                         </div>
                         <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
@@ -158,10 +159,14 @@
                 </div>
 
                 <div id="show_all_button_container" class="mt-4 flex justify-center hidden">
-                    <button
+                    <button id="show_all_transactions_button"
                         class="bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-3 rounded-lg font-medium transition">
                         Show All Transactions
                     </button>
+                    <button id="show_less_transactions_button"
+                        class="w-full lg:w-auto bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition hidden">
+                            Show Less
+                            </button>
                 </div>
             </div>
         </section>
@@ -231,17 +236,32 @@
                     <input type="text" placeholder="Search a beneficiary"
                         class="pl-10 pr-8 bg-[#293038] rounded-lg text-grey-800 h-12 w-full">
                 </div>
-                <div class="max-w-3xl mt-6">
+                <div class="max-w-full mt-6">
                     <div id="recent_beneficiaries_table"
                         class="bg-[#1A1D21] rounded-xl border border-gray-800 overflow-hidden text-sm md:text-base">
-
+                        <div class="flex gap-3 max-md:gap-9 p-3 flex-wrap pr-4">
+                            <button
+                                class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#283039] pl-4 pr-2 text-white text-sm font-medium leading-normal">
+                                Type
+                                <img src="images/icons/arrow-down.png" alt="arrow down icon" class="w-4 h-4">
+                            </button>
+                            <button
+                                class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#283039] pl-4 pr-2 text-white text-sm font-medium leading-normal">
+                                Date
+                                <img src="images/icons/arrow-down.png" alt="arrow down icon" class="w-4 h-4">
+                            </button>
+                            <button
+                                class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#283039] pl-4 pr-2 text-white text-sm font-medium leading-normal">
+                                Amount
+                                <img src="images/icons/arrow-down.png" alt="arrow down icon" class="w-4 h-4">
+                            </button>
+                        </div>
                         <div class="hidden md:grid grid-cols-4 p-4 text-white-400 border-b border-gray-800 font-medium">
                             <div>Name</div>
-                            <div>Account Number</div>
+                            <div class="text-left">Account Number</div>
                             <div class="text-center">Status</div>
                             <div class="text-center">Delete</div>
                         </div>
-
                         <div id="recent_beneficiaries_list" class="divide-y divide-gray-800">
                         </div>
                     </div>
@@ -255,6 +275,10 @@
                         <button id="show_all_beneficiaries_button"
                             class="w-full lg:w-auto bg-[#1280ED] hover:bg-[#1069C4] text-white px-6 py-3 rounded-lg font-medium transition hidden">
                             Show All Beneficiary
+                        </button>
+                        <button id="show_less_beneficiaries_button"
+                            class="w-full lg:w-auto bg-[#1280ED] hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition hidden">
+                            Show Less
                         </button>
                     </div>
                 </div>
