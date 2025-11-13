@@ -493,19 +493,16 @@
                     </h2>
                 </div>
 
-                <div class="px-4 py-3 @container">
-                    <div class="bg-[#1A1D21] rounded-xl border border-gray-800 overflow-hidden text-sm md:text-base">
+                <div class="px-4 py-3">
+                    <div class="bg-[#1A1D21] rounded-xl border border-gray-800 overflow-hidden text-sm md:text-base max-w-1xl">
 
-                        <div class="hidden md:grid grid-cols-4 p-4 text-white-400 border-b border-gray-800 font-medium">
+                        <div class="hidden md:grid grid-cols-3 p-4 text-white-400 border-b border-gray-800 font-medium">
                             <div>Date</div>
                             <div>Type</div>
                             <div>Amount</div>
-                            <div class="text-center">Delete</div>
                         </div>
 
-                        <div class="divide-y divide-gray-800" id="transactions-container">
-
-                        </div>
+                        <div class="divide-y divide-gray-800" id="transactions-container"></div>
                     </div>
                 </div>
                 <div class="flex items-center justify-center p-4" id="pagination-container">
@@ -521,7 +518,7 @@
 
         </section>
 
-        <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center transaction-table hidden">
+        <div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-3 md:items-center transaction-table hidden">
             <div class="text-gray-400">
                 <span class="font-medium text-white md:hidden">Date: </span>
                 <span></span>
@@ -531,7 +528,6 @@
                 <span></span>
             </div>
             <span class="w-full md:justify-self-center"></span>
-            <button class="justify-self-center md:justify-self-center"><img src="images/icons/trash.svg"></button>
         </div>
 
         <!-- Notifications d'erreur ou de succes -->
