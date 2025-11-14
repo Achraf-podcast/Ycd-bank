@@ -5,7 +5,7 @@ const login_page = document.getElementById("login_page")
 const success_notification = document.getElementById("success_notification")
 const error_notification = document.getElementById("error_notification")
 
-var allTransactions = separateTransactions(JSON.parse(sessionStorage.getItem("connected_user")).transactions);
+var allTransactions;
 var actualIndex = 1;
 var paginationIndex = 1;
 var paginationBtns;
@@ -83,8 +83,20 @@ go_to_transactions.addEventListener("click", () => {
     transactions_view.classList.remove("hidden")
     left_side_menu.classList.remove("hidden")
     let users = JSON.parse(localStorage.getItem("users")) || []
+    document.getElementById('transactions-container').innerHTML = "";
+    document.getElementById('pagination-container').innerHTML = "";
+    document.getElementById('pagination-container').innerHTML = `
+        <button class="flex size-10 items-center justify-center">
+                <img src="images/icons/arrow-left.png" alt="arrow left icon" class="w-5 h-5">
+        </button>
+        <button class="flex size-10 items-center justify-center" id="next-arrow">
+                <img src="images/icons/arrow-right.png" alt="arrow right icon" class="w-5 h-5">
+        </button>
+`;
+    
     try {
         if (JSON.parse(sessionStorage.getItem("connected_user")).transactions.length != 0) {
+            allTransactions = separateTransactions(JSON.parse(sessionStorage.getItem("connected_user")).transactions);
             document.getElementById("pagination-container").classList.remove('hidden');
             showPaginationButtons();
             paginationBtns = document.getElementsByClassName("pagination");
@@ -92,8 +104,7 @@ go_to_transactions.addEventListener("click", () => {
             showTransactionOfEachTable();
         } else { document.getElementById("no_transactions_message2").classList.remove('hidden') }
     } catch(er){
-        console.log(er);
-        //document.getElementById("no_transactions_message2").classList.remove('hidden')
+        document.getElementById("no_transactions_message2").classList.remove('hidden')
     }
 })
 
@@ -1087,17 +1098,22 @@ document.getElementById("pagination-container").addEventListener("click", (e) =>
     }
 });
 
-try {
-    if (JSON.parse(localStorage.getItem("users"))[0].transactions.length != 0) {
-        var allTransactions = separateTransactions(JSON.parse(localStorage.getItem("users"))[0].transactions);
-        var actualIndex = 1;
-        var paginationIndex = 1;
-        document.getElementById("pagination-container").classList.remove('hidden');
-        showPaginationButtons();
-        var paginationBtns = document.getElementsByClassName("pagination");
-        paginationBtns[actualIndex - 1].classList.add("bg-[#283039]");
-        showTransactionOfEachTable();
-    } else { document.getElementById("no_transactions_message2").classList.remove('hidden') }
-} catch {
-    document.getElementById("no_transactions_message2").classList.remove('hidden')
+async function convertCurrency(amount, from, to) {
+    document.querySelector('#converted-currency').textContent = "Loading...";
+    try {
+        const response = await fetch(`${API_URL}${from}`);
+        const data = await response.json();
+        const rate = data.conversion_rates[to];
+        const convertedAmount = amount * rate;
+
+        document.querySelector('#converted-currency').textContent = convertedAmount.toFixed(2);
+    }catch{document.querySelector('#converted-currency').textContent = "An error caused by the server, please try again";}
 }
+
+const inputAmount = document.getElementsByClassName('convert-input')[0];
+const inputFrom = document.getElementsByClassName('convert-input')[1];
+const inputTo = document.getElementsByClassName('convert-input')[2];
+
+const API_URL = "https://v6.exchangerate-api.com/v6/a52906b05cf0547eb05bfe81/latest/";
+
+document.getElementById('convert-currency-btn').addEventListener('click', () => convertCurrency(inputAmount.value, inputFrom.value, inputTo.value))
