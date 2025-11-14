@@ -7,6 +7,7 @@
     <title>YCD Bank</title>
     <link rel="shortcut icon" href="images/faviconycdbank.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/script.js" defer></script>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -19,7 +20,10 @@
                 </div>
                 <div class="p-4 @container">
                     <div class="flex flex-col items-stretch rounded-lg @xl:flex-row @xl:items-start">
-                        <div class="w-[345px] h-[229px] max-md:w-full"><img src="images/virtualcard.png" alt="Virtual card image" class="w-full"></div>
+                        <div class="relative w-[345px] h-[229px] max-md:w-full">
+                            <img src="images/virtualcard.png" alt="Virtual card image" class="w-full">
+                            <p class="absolute text-white bottom-4 left-8" id="holder-name"></p>
+                        </div>
                         <div class="flex min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
                             <p class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Virtual Card</p>
                             <div class="flex items-end gap-3 justify-between">
@@ -38,8 +42,8 @@
                             prevent unauthorized use.</p>
                     </div>
                     <div class="shrink-0">
-                        <button class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-[#283039] p-0.5">
-                            <img src="images/icons/cercle.svg" alt="" class="absolute top-0.5 w-7 ">
+                        <button class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-[#283039] p-0.5" id="block-button">
+                            <img src="images/icons/cercle.svg" alt="" class="absolute top-0.5 left-0 w-7" id="block-cercle">
                         </button>
                     </div>
                 </div>
