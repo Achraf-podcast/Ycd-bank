@@ -63,6 +63,16 @@ quick_links_paybills_button.addEventListener("click", () => {
 const currency_converter_view = document.getElementById("currencyConverter-view")
 const go_to_currency_converter_button = document.getElementById("go_to_currencyConverter-view")
 
+const virtual_card_view = document.getElementById("virtualCard-view")
+const go_to_virtual_card_button = document.getElementById("go_to_virtualCcard-view")
+
+go_to_virtual_card_button.addEventListener("click", () => {
+    all_pages.forEach(page => page.classList.add("hidden"))
+    virtual_card_view.classList.remove("hidden")
+    left_side_menu.classList.remove("hidden")
+    let users = JSON.parse(localStorage.getItem("users")) || []
+})
+
 go_to_currency_converter_button.addEventListener("click", () => {
     all_pages.forEach(page => page.classList.add("hidden"))
     currency_converter_view.classList.remove("hidden")
@@ -271,7 +281,7 @@ toggle_balance_button_4.addEventListener("click", () => {
     is_balance_visible_4 = !is_balance_visible_4
 })
 
-const all_pages = [login_page, signup_page, dashboard_view, my_accounts_view, transfers_view, beneficiaries_view, transactions_view, currency_converter_view]
+const all_pages = [login_page, signup_page, dashboard_view, my_accounts_view, transfers_view, beneficiaries_view, transactions_view, currency_converter_view, virtual_card_view]
 
 
 const add_beneficiary_form = document.getElementById("add_beneficiary_form")
@@ -1117,3 +1127,24 @@ const inputTo = document.getElementsByClassName('convert-input')[2];
 const API_URL = "https://v6.exchangerate-api.com/v6/a52906b05cf0547eb05bfe81/latest/";
 
 document.getElementById('convert-currency-btn').addEventListener('click', () => convertCurrency(inputAmount.value, inputFrom.value, inputTo.value))
+
+holderUser = JSON.parse(sessionStorage.getItem("connected_user"));
+
+function blockCard(){
+    if(!isBlocked){
+        document.getElementById('block-button').classList.replace("bg-[#283039]", "bg-blue-600");
+        document.getElementById('block-cercle').classList.replace("left-0", "right-0");
+        isBlocked = true;
+    }
+    else{
+        document.getElementById('block-button').classList.replace("bg-blue-600", "bg-[#283039]");
+        document.getElementById('block-cercle').classList.replace("right-0", "left-0");
+        isBlocked = false;
+    }
+}
+
+var isBlocked = false;
+const holderName = holderUser.nom +" "+holderUser.prenom;
+document.getElementById('holder-name').textContent = holderName;
+
+document.getElementById('block-button').addEventListener("click", blockCard);
