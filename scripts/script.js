@@ -93,7 +93,8 @@ document.getElementById("pagination-container").addEventListener("click", (e) =>
     }
 });
 
-if(JSON.parse(localStorage.getItem("users"))[0].transactions.length != 0){
+try{
+    if(JSON.parse(localStorage.getItem("users"))[0].transactions.length != 0){
     var allTransactions = separateTransactions(JSON.parse(localStorage.getItem("users"))[0].transactions);
     var actualIndex = 1;
     var paginationIndex = 1;
@@ -103,3 +104,6 @@ if(JSON.parse(localStorage.getItem("users"))[0].transactions.length != 0){
     paginationBtns[actualIndex-1].classList.add("bg-[#283039]");
     showTransactionOfEachTable();
 }else{document.getElementById("no_transactions_message").classList.remove('hidden')}
+}catch{
+    document.getElementById("no_transactions_message").classList.remove('hidden')
+}
