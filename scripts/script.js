@@ -1,33 +1,3 @@
-const transactions = [
-    {id: 1, date: "2025-10-26", type: "Payment", amount: 100, amountType: true},
-    {id: 2, date: "2025-10-26", type: "Transfer", amount: -90, amountType: false},
-    {id: 3, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
-    {id: 4, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
-
-    {id: 5, date: "2025-10-26", type: "Payment", amount: 200, amountType: true},
-    {id: 6, date: "2025-10-26", type: "Transfer", amount: -20, amountType: false},
-    {id: 7, date: "2025-10-26", type: "Transfer", amount: 10, amountType: true},
-    {id: 8, date: "2025-10-26", type: "Recharge", amount: -5, amountType: false},
-
-    {id: 9, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
-    {id: 10, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
-    {id: 11, date: "2025-10-26", type: "Payment", amount: 100, amountType: true},
-    {id: 12, date: "2025-10-26", type: "Transfer", amount: -90, amountType: false},
-
-    {id: 13, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
-    {id: 14, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
-    {id: 15, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
-    {id: 16, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
-
-    {id: 17, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
-    {id: 18, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
-    {id: 19, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
-    {id: 20, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
-
-    {id: 21, date: "2025-10-26", type: "Transfer", amount: 800, amountType: true},
-    {id: 22, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false},
-    {id: 23, date: "2025-10-26", type: "Recharge", amount: -35, amountType: false}
-];
 function showTransactionTable(id, date, type, amount, amountType){
     const original = document.querySelector('.transaction-table');
     const container = document.getElementById('transactions-container');
@@ -123,12 +93,13 @@ document.getElementById("pagination-container").addEventListener("click", (e) =>
     }
 });
 
-
-var allTransactions = separateTransactions(transactions);
-var actualIndex = 1;
-var paginationIndex = 1;
-showPaginationButtons();
-var paginationBtns = document.getElementsByClassName("pagination");
-paginationBtns[actualIndex-1].classList.add("bg-[#283039]");
-
-showTransactionOfEachTable();
+if([].length != 0){
+    var allTransactions = separateTransactions([]);
+    var actualIndex = 1;
+    var paginationIndex = 1;
+    document.getElementById("pagination-container").classList.remove('hidden');
+    showPaginationButtons();
+    var paginationBtns = document.getElementsByClassName("pagination");
+    paginationBtns[actualIndex-1].classList.add("bg-[#283039]");
+    showTransactionOfEachTable();
+}else{document.getElementById("no_transactions_message").classList.remove('hidden')}
