@@ -32,7 +32,15 @@ const go_to_beneficiaries_button = document.getElementById("go_to_beneficiaries"
 const quick_links_transfer_button = document.getElementById("quick_links_transfer_button")
 const quick_links_paybills_button = document.getElementById("quick_links_paybills_button")
 
-const search_beneficiary_input = document.getElementById("search_beneficiary_input");
+const search_beneficiary_input = document.getElementById("search_beneficiary_input")
+
+search_beneficiary_input.addEventListener("input", () => {
+    // On vérifie si on était en mode "Show All" pour le rester
+    const is_showing_all = show_less_beneficiaries_button.classList.contains("hidden") === false;
+
+    // On relance la fonction d'affichage (qui va maintenant lire la barre de recherche)
+    recent_beneficiaries(is_showing_all);
+})
 
 quick_links_transfer_button.addEventListener("click", () => {
     go_to_transfers()
@@ -522,7 +530,7 @@ function recent_beneficiaries(show_all = false) {
     // 2. Vider la liste actuelle pour éviter les doublons
     recent_beneficiaries_list.innerHTML = "";
 
-    // 3. Vérifier s'il y a des beneficiaires
+    // 3. Vérifier s'il n'y a AUCUN bénéficiaire (cas de base)
     if (!currentUser.beneficiaries || currentUser.beneficiaries.length === 0) {
         // S'il n'y en a pas :
         no_beneficiaries_message.classList.remove("hidden")
@@ -532,15 +540,22 @@ function recent_beneficiaries(show_all = false) {
         return; // On arrête la fonction ici
     }
 
-    // S'il y en a :
+    // S'il y en a, on prépare l'affichage
     no_beneficiaries_message.classList.add("hidden")
     recent_beneficiaries_table.classList.remove("hidden")
 
-    // 4. ✅ LOGIQUE DE TRI MISE À JOUR
-    const sort_value = sort_beneficiary_select.value;
-    let all_beneficiaries = [...currentUser.beneficiaries]; // Copie
+    // 4. ✅ NOUVELLE ÉTAPE : FILTRER LA LISTE
+    // a. Récupérer le texte de la recherche (et le mettre en minuscules)
+    const search_text = search_beneficiary_input.value.toLowerCase();
 
-    // c. Appliquer le tri
+    // b. Filtrer la liste en fonction de la recherche
+    let all_beneficiaries = currentUser.beneficiaries.filter(beneficiary => {
+        // on garde le bénéficiaire si son nom (en minuscules) inclut le texte de la recherche
+        return beneficiary.name.toLowerCase().includes(search_text);
+    });
+
+    // 5. APPLIQUER LE TRI (sur la liste DÉJÀ filtrée)
+    const sort_value = sort_beneficiary_select.value;
     if (sort_value === 'asc') {
         // Tri A-Z
         all_beneficiaries.sort((a, b) => a.name.localeCompare(b.name));
@@ -552,7 +567,16 @@ function recent_beneficiaries(show_all = false) {
         all_beneficiaries.reverse();
     }
 
-    // 5. LOGIQUE "SHOW ALL"
+    // 6. ✅ VÉRIFIER SI LE FILTRE N'A RIEN DONNÉ
+    if (all_beneficiaries.length === 0) {
+        // S'il n'y a pas de résultat
+        recent_beneficiaries_list.innerHTML = "<div class='p-4 text-center text-gray-400'>Aucun bénéficiaire ne correspond à votre recherche.</div>";
+        show_all_beneficiaries_button.classList.add("hidden");
+        show_less_beneficiaries_button.classList.add("hidden");
+        return; // On arrête
+    }
+
+    // 7. LOGIQUE "SHOW ALL"
     let beneficiaries_to_show;
 
     if (show_all) {
@@ -561,7 +585,7 @@ function recent_beneficiaries(show_all = false) {
         show_less_beneficiaries_button.classList.remove("hidden");
     } else {
         beneficiaries_to_show = all_beneficiaries.slice(0, 4); // On prend 4
-        // On affiche "Show All" SEULEMENT s'il y en a plus de 4
+        // On affiche "Show All" SEULEMENT s'il y en a plus de 4 (dans la liste filtrée)
         if (all_beneficiaries.length > 4) {
             show_all_beneficiaries_button.classList.remove("hidden");
         } else {
@@ -570,13 +594,13 @@ function recent_beneficiaries(show_all = false) {
         show_less_beneficiaries_button.classList.add("hidden");
     }
 
-    // 6. On affiche la liste
+    // 8. On affiche la liste
     beneficiaries_to_show.forEach(bn => {
         const beneficiary_status_color = bn.status === true ? 'bg-green-600' : 'bg-red-600'
         const beneficiary_status = bn.status === true ? 'Active' : 'Blocked'
         const beneficiaryRow = `<div class="p-4 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-center" >
                                 <div class="text-gray-400">
-                                    <span class="font-medium text-white md:hidden">Name: </span>
+                                <span class="font-medium text-white md:hidden">Name: </span>
                                 ${bn.name}
                                 </div>
                                 <div class="text-gray-400">
@@ -597,7 +621,7 @@ function recent_beneficiaries(show_all = false) {
     })
 }
 
-// --- ÉCOUTEURS POUR LES BOUTONS "SHOW ALL" / "SHOW LESS" ---
+// Ecouteurs pour les boutons show all / show less
 
 show_all_beneficiaries_button.addEventListener("click", () => {
     recent_beneficiaries(true); // Appelle la fonction en mode "tout afficher"
