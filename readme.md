@@ -1,3 +1,5 @@
+Vercel version: https://ycd-bank-blond.vercel.app/
+
 Ycd Bank – Modern Banking UI
 
 A clean and responsive front-end web interface for a digital banking application.
