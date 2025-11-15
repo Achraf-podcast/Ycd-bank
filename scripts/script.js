@@ -1128,8 +1128,6 @@ const API_URL = "https://v6.exchangerate-api.com/v6/a52906b05cf0547eb05bfe81/lat
 
 document.getElementById('convert-currency-btn').addEventListener('click', () => convertCurrency(inputAmount.value, inputFrom.value, inputTo.value))
 
-holderUser = JSON.parse(sessionStorage.getItem("connected_user"));
-
 function blockCard(){
     if(!isBlocked){
         document.getElementById('block-button').classList.replace("bg-[#283039]", "bg-blue-600");
@@ -1143,8 +1141,11 @@ function blockCard(){
     }
 }
 
-var isBlocked = false;
-const holderName = holderUser.nom +" "+holderUser.prenom;
-document.getElementById('holder-name').textContent = holderName;
+try{
+    holderUser = JSON.parse(sessionStorage.getItem("connected_user"));
+    var isBlocked = false;
+    const holderName = holderUser.nom +" "+holderUser.prenom;
+    document.getElementById('holder-name').textContent = holderName;
+}catch{}
 
 document.getElementById('block-button').addEventListener("click", blockCard);
